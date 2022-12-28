@@ -57,6 +57,7 @@
         <label class="form-label">Tema</label>
         <input type="text" class="form-control" placeholder="Tema" [formControl]="item.tema">
       </div>
+      <button type="button" class="btn btn-danger" (click)="excluirConvite(i)">Excluir</button>
     </div>
     <button type="button" class="btn btn-primary" (click)="adicionarConvite()">Adicionar convite</button>
   </div>

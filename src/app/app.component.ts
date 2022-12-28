@@ -81,4 +81,8 @@ export class AppComponent{
       ordem: new FormControl(''),
     });
   }
+
+  excluirConvite(i:number){
+    this.listaConvites.splice(i,1);
+  }
 }
