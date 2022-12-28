@@ -32,7 +32,7 @@ export class AppComponent implements OnInit{
   anoControl = new FormControl(2023);
 
   recomendacoesControl = new FormControl(`Recomendações:
-  - Sente-se ao púlpito às 8h20m
+  - Sente-se ao púlpito às 9h50m
   - Ensine a pura doutrina de Cristo
   - Utilize os recursos oficiais da Igreja ao ensinar
   - Trate com respeito ao mencionar outras religiões
