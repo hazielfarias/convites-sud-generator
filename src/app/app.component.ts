@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as htmlToImage from 'html-to-image';
 
@@ -7,10 +7,7 @@ import * as htmlToImage from 'html-to-image';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  ngOnInit(): void {
-    console.log(this.formatText(this.recomendacoesControl.value!));
-  }
+export class AppComponent{
 
   listaConvites = [
     {
@@ -47,7 +44,12 @@ export class AppComponent implements OnInit{
 
     this.listaConvites.forEach((item, index) => {
       let node = document.getElementById(`imagem-${index}`);
-
+      let divImagens = document.getElementById(`imagens-div`);
+      if (window.screen.width < 1200) {
+        divImagens!.style.display = "inherit";
+        divImagens!.style.visibility = "visible";
+      }
+      
       if (node) htmlToImage.toBlob(node)
         .then((blob) => {
           var url = window.URL.createObjectURL(blob!);
@@ -59,7 +61,12 @@ export class AppComponent implements OnInit{
           a.click();
           window.URL.revokeObjectURL(url);
           a.remove();
+          if (window.screen.width < 1200) {
+            divImagens!.style.display = "none";
+            divImagens!.style.visibility = "hidden";
+          }
         });
+      
     });
 
   }

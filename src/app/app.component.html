@@ -63,8 +63,8 @@
   <hr>
   <div class="imagens-area">
     <button type="button" class="btn btn-success" (click)="downloadAll()">Baixar convites</button>
-    <h5>Pré-visualização dos convites abaixo</h5>
-    <div class="imagens">
+    <div class="imagens" id="imagens-div">
+      <h5>Pré-visualização dos convites abaixo</h5>
       <div class="imagem" *ngFor="let item of listaConvites; let i = index" [id]="'imagem-'+i">
         <p class="texto texto-1">{{item.genero}} <strong>{{item.nome.value}}</strong>,
           O Bispado da unidade {{unidadeControl.value}} gostaria de convidá-l{{item.genero=='Irmã' ? 'a' : 'o'}} a ser {{item.genero=='Irmã' ? 'a' : 'o'}} <strong>{{item.ordem.value}}º ORADOR{{item.genero=='Irmã' ? 'A' : ''}}</strong> no dia <strong>{{item.data.value}}</strong> de {{anoControl.value}} às {{horarioControl.value}} na nossa capela.

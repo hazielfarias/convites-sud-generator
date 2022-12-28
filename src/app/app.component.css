@@ -1,5 +1,6 @@
 .container{
     width: 100%;
+    overflow-x: hidden;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -43,6 +44,12 @@ hr{
 .btn{
     height: fit-content;
 }
+.imagens-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
 
 .imagens{
     display: flex;
@@ -62,6 +69,12 @@ hr{
     font-size: 50px;
 }
 
+.scale-ok{
+    
+}
+
+
+
 .break-line {
     white-space: pre-wrap;
 }
@@ -75,4 +88,11 @@ hr{
     text-align: center;
     font-size: 30px;
     margin-top: 150px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .imagens{
+        visibility: hidden;
+        display: none;
+    }
 }
