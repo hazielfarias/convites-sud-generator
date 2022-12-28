@@ -1,0 +1,79 @@
+<!-- <div>{{mensagemControl.value}}</div> -->
+<div class="container">
+
+  <h1>Gerador de convites de Discursantes SUD</h1>
+  <div class="header">
+    <h3>Valores Padrão</h3>
+    <div>
+      <label class="form-label">Unidade (Ala ou Ramo)</label>
+      <input type="text" class="form-control" placeholder="Ala ou Ramo" [formControl]="unidadeControl">
+    </div>
+    <div>
+      <label class="form-label">Ano</label>
+      <input type="number" class="form-control" placeholder="Ano" [formControl]="anoControl">
+    </div>
+    <div>
+      <label class="form-label">Horário</label>
+      <input type="text" class="form-control" placeholder="Ex. 8h30m" [formControl]="horarioControl">
+    </div>
+    <div>
+      <label class="form-label">Recomendações</label>
+      <textarea class="form-control" [formControl]="recomendacoesControl" placeholder="Recomendações"
+        rows="6"></textarea>
+    </div>
+    <div>
+      <label class="form-label">Mensagem abaixo no convite</label>
+      <textarea class="form-control" [formControl]="mensagemControl" placeholder="Mensagem abaixo" rows="6"></textarea>
+    </div>
+  </div>
+  <hr>
+  <h3>Convites dos Discursantes</h3>
+  <div class="convites-area">
+    <div class="card convite" *ngFor="let item of listaConvites; let i = index">
+      <h5>Convite {{i+1}}</h5>
+      <div>
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" placeholder="Nome" [formControl]="item.nome">
+      </div>
+      <div>
+        <label class="form-label">Gênero</label>
+        <input type="text" class="form-control" placeholder="Gênero" disabled [value]="item.genero">
+        <button type="button" class="btn btn-info btn-sm" (click)="item.genero='Irmão'">Masculino</button>
+        <button type="button" class="btn btn-info btn-sm" (click)="item.genero='Irmã'">Feminino</button>
+      </div>
+      <div>
+        <label class="form-label">Data (Dia e mês por extenso)</label>
+        <input type="text" class="form-control" placeholder="Ex: 23 de Agosto" [formControl]="item.data">
+      </div>
+      <div>
+        <label class="form-label">Ordem que irá discursar</label>
+        <input type="number" class="form-control" placeholder="Ex: 1" [formControl]="item.ordem">
+      </div>
+      <div>
+        <label class="form-label">Duração (em minutos)</label>
+        <input type="number" class="form-control" placeholder="Duração" [formControl]="item.duracao">
+      </div>
+      <div>
+        <label class="form-label">Tema</label>
+        <input type="text" class="form-control" placeholder="Tema" [formControl]="item.tema">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="adicionarConvite()">Adicionar convite</button>
+  </div>
+  <hr>
+  <div class="imagens-area">
+    <button type="button" class="btn btn-success" (click)="downloadAll()">Baixar convites</button>
+    <h5>Pré-visualização dos convites abaixo</h5>
+    <div class="imagens">
+      <div class="imagem" *ngFor="let item of listaConvites; let i = index" [id]="'imagem-'+i">
+        <p class="texto texto-1">{{item.genero}} <strong>{{item.nome.value}}</strong>,
+          O Bispado da unidade {{unidadeControl.value}} gostaria de convidá-l{{item.genero=='Irmã' ? 'a' : 'o'}} a ser {{item.genero=='Irmã' ? 'a' : 'o'}} <strong>{{item.ordem.value}}º ORADOR{{item.genero=='Irmã' ? 'A' : ''}}</strong> no dia <strong>{{item.data.value}}</strong> de {{anoControl.value}} às {{horarioControl.value}} na nossa capela.
+          Seu discurso terá duração de <strong>{{item.duracao.value}} minutos</strong>. 
+          O tema será <strong>{{item.tema.value}}</strong>.</p>
+          <p class="texto texto-2 break-line">{{recomendacoesControl.value}}</p>
+          <p class="texto texto-3 break-line">{{mensagemControl.value}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
