@@ -1,12 +1,16 @@
-const express = require('express');
-const path = require('path');
-const nomeApp = process.env.npm_package_name;
+const express = require("express");
+const http = require("http");
+const path = require("path");
+
 const app = express();
+app.use(express.static(path.join(__dirname, "dist/convites-sud-generator"))); //aqui você define onde está o index.html da sua aplicação.
 
-app.use(express.static(`${__dirname}/dist/${nomeApp}`));
-
-app.get('/*', (req, res) => {
-res.sendFile(path.join(`${__dirname}/dist/${nomeApp}/index.html`));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/convites-sud-generator/index.html"));
 });
 
-app.listen(process.env.PORT || 8080);
+const port = process.env.PORT || 8080;
+app.set("port", port);
+
+const server = http.createServer(app);
+server.listen(port, () => console.log("Running"));
